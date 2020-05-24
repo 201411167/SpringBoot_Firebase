@@ -43,4 +43,13 @@ public class UserServiceTest {
         assertThat(name, is("test_name"));
     }
 
+    @Test
+    public void 유저_토큰_테스트(){
+        service.insertUser("test_email", "test_name");
+        service.addIdTokenToUser("test_email", "test_token");
+        String token = service.getTokenByEmail("test_email");
+
+        assertThat(token, is("test_token"));
+    }
+
 }

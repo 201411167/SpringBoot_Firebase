@@ -42,6 +42,24 @@ public class FirebaseUtil {
         return records;
     }
 
+    public void createUser(String email, String name) throws FirebaseAuthException {
+        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+                .setEmail(email)
+                .setEmailVerified(false)
+                .setDisplayName(name)
+                .setDisabled(false);
+
+        UserRecord userRecord = FirebaseAuth.getInstance().createUser(request);
+    }
+
+    public void deleteUser(String email) throws FirebaseAuthException {
+        FirebaseAuth.getInstance().deleteUser(email);
+    }
+
+    public UserRecord getUser(String email) throws FirebaseAuthException {
+        return FirebaseAuth.getInstance().getUserByEmail(email);
+    }
+
     public void sendFCMMessage(String token, String title, String content) throws FirebaseMessagingException {
         Message msg = Message.builder()
                 .setAndroidConfig(AndroidConfig.builder()

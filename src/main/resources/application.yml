@@ -2,3 +2,9 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/firebase
+#      uri: mongodb://localhost:27017/firebase
+#
+#      port: 27017
+#      username: admin
+#      password: 1234
+#      authentication-database: admin

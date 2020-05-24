@@ -30,4 +30,36 @@ public class UserService {
         Optional<User> optionalUser = userRepo.findById(email);
         return optionalUser.orElse(null);
     }
+
+    public void addRegistrationTokenToUser(String email, String registrationToken){
+        Optional<User> optionalUser = userRepo.findById(email);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            user.setRegistrationToken(registrationToken);
+            userRepo.save(user);
+        }
+    }
+
+    public void addCustomTokenToUser(String email, String customToken){
+        Optional<User> optionalUser = userRepo.findById(email);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            user.setCustomToken(customToken);
+            userRepo.save(user);
+        }
+    }
+
+    public void addIdTokenToUser(String email, String idToken){
+        Optional<User> optionalUser = userRepo.findById(email);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            user.setIdToken(idToken);
+            userRepo.save(user);
+        }
+    }
+
+    public String getTokenByEmail(String email) {
+        Optional<User> optionalUser = userRepo.findById(email);
+        return optionalUser.map(User::getIdToken).orElse(null);
+    }
 }

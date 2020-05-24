@@ -11,6 +11,9 @@ public class User {
     @Id
     private String email;
     private String name;
+    private String customToken;
+    private String idToken;
+    private String registrationToken;
 
     @Builder
     public User(String email, String name) {
